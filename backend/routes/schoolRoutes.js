@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const upload = require('../helpers/imageUpload');
 const School = require('../models/school');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 router.route('/').get(async (req, res)=>{
     const schools = await School.find();
@@ -49,7 +51,7 @@ router.route('/create').post(upload.single("image"), async (req, res) => {
 router.route('/update').post(upload.single("image"), async (req,res)=>{
 
     const { schoolId, about, location, admissions } = req.body;
-
+    
     const school = await School.findById(schoolId);
 
     if (!school){
@@ -84,6 +86,32 @@ router.route('/update').post(upload.single("image"), async (req,res)=>{
         success: true,
         errors: null
     });
+});
+
+router.route('/:id').get(async (req, res) => {
+    const { id } = req.params;
+
+    if (!ObjectId.isValid(id)){
+        return res.status(404).json({
+            success: false, 
+            errors: {
+                msg: "Not a valid Id"
+            }
+        });
+    }
+
+    const school = await School.findById(id);
+
+    if (!school){
+        return res.status(404).json({
+            success: false, 
+            errors: {
+            msg: "No school exists with this Id"
+            }
+        });
+    }
+    
+    return res.status(200).json({success: true, school: school});
 });
 
 module.exports = router;
