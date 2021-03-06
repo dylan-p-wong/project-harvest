@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 import School from "./Components/School";
 import CreateSchool from "./Components/CreateSchool";
 import UpdateSchool from "./Components/UpdateSchool";
-import styles from "./styles.css";
+import "./styles.css";
 import Home from "./Components/Home";
 
 function App() {
