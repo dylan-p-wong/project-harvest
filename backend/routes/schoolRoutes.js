@@ -10,7 +10,7 @@ router.route('/').get(async (req, res)=>{
     res.status(200).json({schools}); 
 });
 
-router.route('/create').post(upload.single("image"), async (req, res) => {
+router.route('/create').post(upload.single("image"), async (req, res) => {    
     if (!req.file){
         return res.status(400).json({
             success: false,

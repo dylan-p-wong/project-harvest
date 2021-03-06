@@ -21,7 +21,7 @@ const upload = multer({
     fileFilter,
     storage: multers3({
         s3,
-        bucket: "projectharvest",
+        bucket: process.env.BUCKET_NAME,
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname });
         },

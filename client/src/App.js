@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Link, Switch, Redirect } from "react-router-dom";
 import School from "./Components/School";
 import CreateSchool from "./Components/CreateSchool";
+import UpdateSchool from "./Components/UpdateSchool";
 import axios from "axios";
 
 function App() {
@@ -29,8 +30,11 @@ function App() {
         </Link>
       </div>
       <Switch>
-        <Route path="/school/:id" exact>
+          <Route path="/school/:id" exact>
             <School />
+          </Route>
+          <Route path="/update-school/:id" exact>
+            <UpdateSchool />
           </Route>
           <Route path="/create-school" exact>
             <CreateSchool />
@@ -46,9 +50,9 @@ function App() {
                   </div>)
                 )
               : <p>No Schools</p>}
-              
             </div>
           </Route>
+          <Route render={() => <Redirect to="/"/>}/>
       </Switch>
     </BrowserRouter>
   );

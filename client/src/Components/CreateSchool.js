@@ -9,12 +9,17 @@ export default function CreateSchool(){
         <div>
             <Formik
                 initialValues={{name: '', about: '', location: '', admissions: '', image: ''}}
-
+                
                 validate={values => {
                     const errors = {};
 
                     if (!values.name || !values.location || !values.about || !values.admissions || !values.image){
                         errors.error = "Fill in all fields";
+                        return errors;
+                    }
+
+                    if (values.image.type !== "image/jpeg" && values.image.type !== "image/png"){
+                        errors.error = "Must have a .jpg or .png extension";
                     }
 
                     return errors;
@@ -26,13 +31,14 @@ export default function CreateSchool(){
                     formData.append("location", values.location);
                     formData.append("admissions", values.admissions);
                     formData.append("image", values.image);
-
+                    
                     try {
                         await axios.post(process.env.REACT_APP_API_URL + "/schools/create", formData, {
                             headers: {
                                 'Content-Type': 'multipart/form-data'
                             }
                         });
+                        
                         history.push("/");
                     } catch (e) {
                         console.log(e.response);

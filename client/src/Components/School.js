@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function School(){
@@ -20,15 +21,18 @@ export default function School(){
             }
         }
         fetchData();
-    }, []);
+    }, [id]);
 
     if (loading){
         return <p>Loading...</p>
     }
 
+    if (!data){
+        return <p>Error</p>
+    }
+
     return (
         <div>
-            {data ? 
             <div>
                 <p>
                     Name: {data.schoolName}
@@ -42,10 +46,9 @@ export default function School(){
                 <p>
                     Admissions: {data.admissions}
                 </p>
-                <img style={{maxHeight: "150px", maxWidth: "150px"}} src={data.imageLocation}></img>
+                <img alt="school" style={{maxHeight: "150px", maxWidth: "150px"}} src={data.imageLocation}></img>
             </div>
-            : 
-            null}
+            <Link to={`/update-school/${data._id}`}>Update</Link>
         </div>
     )
 }
