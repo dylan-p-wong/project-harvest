@@ -77,15 +77,22 @@ export default function UpdateSchool(){
             >
             {({ handleChange, errors, sumbitForm, isSubmitting, setFieldValue, values}) => (
                 <Form>
+                    <label htmlFor="name">School Name</label>
                     <p>{data.schoolName}</p>
-                    <textarea name="about" rows="4" cols="50" onChange={handleChange}>{values.about}</textarea>
-                    <textarea name="location" rows="4" cols="50" onChange={handleChange}>{values.location}</textarea>
-                    <textarea name="admissions" rows="4" cols="50" onChange={handleChange}>{values.admissions}</textarea>
+                    <br />
+                    <label htmlFor="about">About</label>
+                    <textarea name="about" rows="4" cols="50" onChange={handleChange} defaultValue={values.about}></textarea>
+                    <label htmlFor="location">Location</label>
+                    <textarea name="location" rows="4" cols="50" onChange={handleChange} defaultValue={values.location}></textarea>
+                    <label htmlFor="admissions">Admissions</label>
+                    <textarea name="admissions" rows="4" cols="50" onChange={handleChange} defaultValue={values.admissions}></textarea>
+                    <label htmlFor="image">Image</label>
                     <input type="file" name="file" onChange={(e) => {
                         setFieldValue("image", e.currentTarget.files[0]);
                     }}/>
+                    <p style={{fontSize: "12px"}}>{errors.error}</p>
+                    <br />
                     <button type="submit" disabled={isSubmitting} onClick={sumbitForm}>Update</button>
-                    {errors.error}
                 </Form>
             )}
             </Formik>

@@ -6,7 +6,7 @@ export default function CreateSchool(){
     const history = useHistory();
 
     return (
-        <div>
+        <div className="formContainer">
             <Formik
                 initialValues={{name: '', about: '', location: '', admissions: '', image: ''}}
                 
@@ -48,15 +48,24 @@ export default function CreateSchool(){
             >
             {({ handleChange, errors, sumbitForm, isSubmitting, setFieldValue}) => (
                 <Form>
+                    <label htmlFor="name">School Name</label>
                     <input type="name" name="name" onChange={handleChange}></input>
+                    <br />
+                    <label htmlFor="about">About</label>
                     <textarea name="about" rows="4" cols="50" onChange={handleChange}/>
+                    <label htmlFor="location">Location</label>
                     <textarea name="location" rows="4" cols="50" onChange={handleChange}/>
+                    <label htmlFor="admissions">Admissions</label>
                     <textarea name="admissions" rows="4" cols="50" onChange={handleChange}/>
+                    <br />
+                    <label htmlFor="image">Image</label>
                     <input type="file" name="file" onChange={(e) => {
                         setFieldValue("image", e.currentTarget.files[0]);
                     }}/>
+                    <br />
+                    <p style={{fontSize: "12px"}}>{errors.error}</p>
+                    <br />
                     <button type="submit" disabled={isSubmitting} onClick={sumbitForm}>Create</button>
-                    {errors.error}
                 </Form>
             )}
             </Formik>

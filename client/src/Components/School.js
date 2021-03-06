@@ -32,23 +32,25 @@ export default function School(){
     }
 
     return (
-        <div>
-            <div>
-                <p>
-                    Name: {data.schoolName}
-                </p>
-                <p>
-                    About: {data.about}
-                </p>
-                <p>
-                    Location: {data.location}
-                </p>
-                <p>
-                    Admissions: {data.admissions}
-                </p>
-                <img alt="school" style={{maxHeight: "150px", maxWidth: "150px"}} src={data.imageLocation}></img>
-            </div>
-            <Link to={`/update-school/${data._id}`}>Update</Link>
+        <div className="schoolPage">
+            <label htmlFor="name">School Name</label>
+            <p>{data.schoolName}</p>
+            <br />
+            <label htmlFor="about">About</label>
+            <p>{data.about}</p>
+            <br />
+            <label htmlFor="location">Location</label>
+            <p>{data.location}</p>
+            <br />
+            <label htmlFor="admissions">Admissions</label>
+            <p>{data.admissions}</p>
+            <br />
+            <label htmlFor="image">Image</label>
+            <img alt="school" style={{maxHeight: "150px", maxWidth: "150px"}} src={data.imageLocation}></img>
+            <br />
+            <button>
+                <Link to={`/update-school/${data._id}`}>Update</Link>
+            </button>
         </div>
     )
 }
