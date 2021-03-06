@@ -14,33 +14,18 @@ body {
     justify-content: center;
 }
 
-.formContainer {
-    text-align: center;
-}
-
 .container {
     padding: 16px;
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-}
-
-@media only screen and (max-width: 900px){
-    .container {
-        padding: 16px;
-        display: grid;
-        grid-template-columns: 33% 33% 33%;
-    }
-}
-
-@media only screen and (max-width: 650px){
-    .container {
-        padding: 16px;
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: auto;
+    align-content: start;
 }
 
 .schoolName {
+    min-width: 150px;
     background-color: aliceblue;
     text-align: center;
     margin: 5px;
@@ -83,13 +68,13 @@ input {
 
 form {
     border-radius: 25px;
+    margin-left: 5px;
     background-color: aliceblue;
     width: 50%;
     margin: 0 auto;
-    width: 90%;
-    max-width: 800px;
+    width: 80%;
     text-align: center;
-    padding: 30px;
+    padding: 25px;
 }
 
 textarea {

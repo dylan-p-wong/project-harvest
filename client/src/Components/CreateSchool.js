@@ -6,7 +6,7 @@ export default function CreateSchool(){
     const history = useHistory();
 
     return (
-        <div className="formContainer">
+        <div>
             <Formik
                 initialValues={{name: '', about: '', location: '', admissions: '', image: ''}}
                 
